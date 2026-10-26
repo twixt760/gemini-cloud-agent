@@ -170,7 +170,8 @@ def sync_loop():
 
 
 def keepalive_loop():
-    host = os.environ.get("SPACE_HOST", "").strip()
+    host = (os.environ.get("SPACE_HOST", "").strip()
+            or os.environ.get("RENDER_EXTERNAL_HOSTNAME", "").strip())
     if not host:
         return
     url = "https://%s/health" % host
